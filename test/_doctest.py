@@ -65,13 +65,12 @@ if RUN_ALL:
 
     doctest.testmod(encoding_specs, verbose=verbose)
 
-
 # ========== datasets package ========== #FIXME
 # if True:
-    # from pedata. import utils
-    # from pedata. import vis
-    # from pedata.preprocessing import split
+# from pedata. import utils
+# from pedata. import vis
+# from pedata.preprocessing import split
 
-    # doctest.testmod(utils, verbose=verbose)
-    # doctest.testmod(vis, verbose=verbose)
-    # doctest.testmod(split, verbose=verbose)
+# doctest.testmod(utils, verbose=verbose)
+# doctest.testmod(vis, verbose=verbose)
+# doctest.testmod(split, verbose=verbose)

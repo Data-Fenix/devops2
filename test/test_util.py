@@ -22,7 +22,6 @@ from pedata import (
     aa_example_0_no_missing_val,
 )
 
-
 def get_small_large_df() -> tuple[ds.Dataset, ds.Dataset, str]:
     base_seq = "MAGLYITR"
     large_df = ds.Dataset.from_dict(
@@ -57,7 +56,6 @@ def get_small_large_df() -> tuple[ds.Dataset, ds.Dataset, str]:
         df = df.with_format(columns=["aa_seq", "aa_mut"])
     return small_df, large_df, base_seq
 
-
 def test_get_target_columns():
     # Test case 1: Non-dataset Object
     invalid_input = {"aa_seq": ["MAPEKT"], "target foo": {1}}
@@ -88,7 +86,6 @@ def test_get_target_columns():
         }
     )
     assert get_target_columns(dataset) == ["target 1", "target 2", "target 3"]
-
 
 def test_get_target():
     # Test case 1: Invalid input
@@ -146,7 +143,6 @@ def test_get_target():
     }
     for key in target_dict:
         assert np.array_equal(target_dict[key], expected_targets_dict[key])
-
 
 def test_adjust_all_targets_maximization():
     # Test Case 1: Minimization objective
@@ -239,7 +235,6 @@ def test_adjust_all_targets_maximization():
         == -np.abs(np.arange(len(dataset)) - len(dataset))
     ), "Fixed target values are off."
 
-
 def test_zscore():
     # Test case 1: 1D array of consecutive numbers from 1 to 9
     input_array = np.arange(10)
@@ -299,7 +294,6 @@ def test_zscore():
     with pytest.raises(TypeError):
         zscore(invalid_input)
 
-
 def test_get_summary_variable():
     # Test case 1: Unnormalized summary variable
     fix = np.abs(np.arange(10) - 4.5)
@@ -356,7 +350,6 @@ def test_get_summary_variable():
     with pytest.raises(TypeError):
         get_summary_variable(invalid_input)
 
-
 def test_append_summary_variable():
     dataset = ds.Dataset.from_dict(
         {
@@ -377,12 +370,10 @@ def test_append_summary_variable():
         summary_variable_name="target summary variable",
     )
 
-
 def test_regression_adjust_target_maximization():
     objectives = {"target a": OptimizationObjective(direction="max")}
     small_df, _, _ = get_small_large_df()
     adjust_all_targets_maximization(small_df, objectives=objectives)
-
 
 def test_OptimizationObjective():
     objective_min = OptimizationObjective(direction="min")
@@ -414,22 +405,18 @@ def test_OptimizationObjective():
     with pytest.raises(TypeError):
         _ = OptimizationObjective()
 
-
 # ======= DATASET HANDLER ========
 @fixture
 def single_feature_dataset():
     return ds.Dataset.from_dict({"target 1": [1, 2]})
 
-
 @fixture
 def single_expected_output():
     return torch.tensor([[1.0], [2.0]], dtype=torch.float64)
 
-
 @fixture
 def hfds_metadata_single(single_feature_dataset):
     return DatasetHandler(single_feature_dataset, ["target 1"])
-
 
 def test_DatasetHandler_single_feature(
     single_feature_dataset, single_expected_output, hfds_metadata_single
@@ -448,23 +435,19 @@ def test_DatasetHandler_single_feature(
     # Test case 3: Test dims() method with a single feature
     assert hfds_metadata_single.dims(["target 1"]) == (0,)
 
-
 @fixture
 def multi_feature_dataset():
     return ds.Dataset.from_dict(
         {"aa_seq": ["MATCG", "KTGAC"], "target 1": [1, 2], "target 2": [3, 4]}
     )
 
-
 @fixture
 def multi_expected_output():
     return torch.tensor([[1.0, 3.0], [2.0, 4.0]], dtype=torch.float64)
 
-
 @fixture
 def hfds_metadata_multi(multi_feature_dataset):
     return DatasetHandler(multi_feature_dataset, ["target 1", "target 2"])
-
 
 def test_DatasetHandler_multi_feature(
     multi_feature_dataset, multi_expected_output, hfds_metadata_multi

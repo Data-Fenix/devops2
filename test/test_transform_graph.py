@@ -3,7 +3,6 @@ import pedata.encoding.transforms_graph as tg
 import datasets as ds
 import pytest
 
-
 def test_get_num_nodes_edges():
     # Test case 1: Single graph with 4 nodes and 3 edges
     adj_list = [jnp.array(([0, 1, 0], [2, 1, 3]))]
@@ -64,7 +63,6 @@ def test_get_num_nodes_edges():
     adj_list = [jnp.array(([0, 1], [1, 2], [3, 4]))]
     with pytest.raises(ValueError):
         tg.get_num_nodes_edges(adj_list)
-
 
 def test_filter_adj_list_by_edge_type():
     # Test case 1: Multiple graphs with multiple edge types
@@ -188,7 +186,6 @@ def test_filter_adj_list_by_edge_type():
             adj, expected_adj
         ), f"Expected {expected_adj}, but got {adj}"
 
-
 def test_adj_list_to_adjmatr():
     # Test case 1: Basic test with single edge
     adj_list = jnp.array([[0], [1]])
@@ -294,7 +291,6 @@ def test_adj_list_to_adjmatr():
         assert jnp.array_equal(
             result, expected_result
         ), f"Expected {expected_result}, but got {result}"
-
 
 def test_atm_adj():
     adj_list = ds.Dataset.from_dict(

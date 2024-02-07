@@ -2,7 +2,6 @@ from pytest import fixture
 from pedata import RegressionToyDataset
 from datasets import Dataset
 
-
 @fixture(scope="module")
 def regr_dataset_train(needed_encodings: list[str]) -> Dataset:
     """Regression dataset - train split
@@ -22,7 +21,6 @@ def regr_dataset_train(needed_encodings: list[str]) -> Dataset:
     """
     ds = RegressionToyDataset(needed_encodings)
     return ds.train
-
 
 @fixture(scope="module")
 def regr_dataset_test(needed_encodings: list[str]) -> Dataset:
@@ -44,7 +42,6 @@ def regr_dataset_test(needed_encodings: list[str]) -> Dataset:
     ds = RegressionToyDataset(needed_encodings)
     return ds.test
 
-
 @fixture(scope="module")
 def regr_dataset(needed_encodings: list[str]) -> Dataset:
     """Regression dataset - full dataset
@@ -65,7 +62,6 @@ def regr_dataset(needed_encodings: list[str]) -> Dataset:
 
     ds = RegressionToyDataset(needed_encodings)
     return ds.full_dataset
-
 
 @fixture(scope="module")
 def regr_dataset_splits(needed_encodings) -> Dataset:

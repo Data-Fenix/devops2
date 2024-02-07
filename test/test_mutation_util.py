@@ -2,7 +2,6 @@ import pytest
 import pedata.mutation.mutation_util as mu
 from pedata.constants import Mut, Mut_with_no_targ
 
-
 class TestMutationUtil:
     def test_convert_tuple_to_valid_namedtuple(self):
         # Test case 1: With invalid input

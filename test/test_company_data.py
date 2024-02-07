@@ -3,7 +3,6 @@ from pedata import (
     ClassificationToyDataset,
 )
 
-
 def test_regr_dataset_get_full_dataset():
     """Test that the Regression Dataset has all needed attributes and encodings"""
     TestRegressionData = RegressionToyDataset()
@@ -24,7 +23,6 @@ def test_regr_dataset_get_full_dataset():
             "target_kcat_per_kmol",
         ]
     )
-
 
 def test_class_dataset_get_full_dataset():
     """Test that the Classification Dataset has all needed attributes and encodings"""

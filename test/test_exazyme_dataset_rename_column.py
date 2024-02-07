@@ -2,7 +2,6 @@ import subprocess
 
 import requests
 
-
 # check if we are online and can access huggingface
 def huggingface_hub_access():
     try:
@@ -17,12 +16,10 @@ def huggingface_hub_access():
         print(f"Error accessing Hugging Face Hub: {e}")
         return False
 
-
 if huggingface_hub_access:
 
     def run_command(command):
         subprocess.run(command, shell=True, check=True)
-
     # def test_rename_hub_dataset_column():
     #     """testing the rename_hub_dataset_column function"""
 

@@ -73,12 +73,10 @@ assert isinstance(dataset, datasets.DatasetDict)
 dataset_cat = splitter.concatenated_dataset(dataset, split_list=["train"])
 print(dataset_cat)
 
-
 print("-------- k-fold split -----------------")
 splitter = DatasetSplitterRandomKFold(k=3)
 dataset = splitter.split(toy_dataset)
 print(dataset)
-
 
 print("-------- k-fold split - return all train_test_sets -----------------")
 k = 0
@@ -86,7 +84,6 @@ for train_test_set in splitter.yield_all_train_test_sets(dataset):
     k += 1
     print(f"- train_test_{k} -")
     print(train_test_set)
-
 
 print(
     "-------- k-fold split - return all train_test_sets - combining 2 splits for generating test set-----------------"

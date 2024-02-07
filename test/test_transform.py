@@ -3,7 +3,6 @@ import pytest
 from Bio.Data import CodonTable
 from pedata.encoding import translate_dna_to_aa_seq
 
-
 def test_translate_dna_to_aa_seq():
     # Test case 1: invalid input
     invalid_input = {"dna_seq": ["GATCTG"]}

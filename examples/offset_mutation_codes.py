@@ -1,7 +1,6 @@
 import pedata as ped
 import datasets as ds
 
-
 # Example 1: estimate offset from mutation codes
 dataset = ds.Dataset.from_dict(
     {"aa_mut": ["C9X_E11Y", "D10K"], "aa_seq": [None, None], "target foo": [1, 2]}

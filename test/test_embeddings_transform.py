@@ -8,11 +8,9 @@ from pedata.encoding.embeddings_transform import (
     reshape_1hot,
 )
 
-
 @fixture(scope="module")  # fixture for regr_dataset_test
 def needed_encodings():
     return ["aa_len", "aa_1hot"]
-
 
 @fixture
 def lin_kernel():
@@ -20,20 +18,16 @@ def lin_kernel():
     y = np.random.randn(20, 5)
     return linear_kernel(x, y)
 
-
 @fixture()
 def regr_dataset_seq_len(regr_dataset_test):
     return np.max(regr_dataset_test["aa_len"])
-
 
 @fixture()
 def nb_aa():
     return 21
 
-
 def test_linear_kernel(lin_kernel):
     assert lin_kernel.shape == (10, 20)
-
 
 def test_reshape_1hot(regr_dataset_test, regr_dataset_seq_len, nb_aa):
     """Reshaping of 1hot encodings to dimensiions (n_seqs, seq_len, 21)"""
@@ -41,7 +35,6 @@ def test_reshape_1hot(regr_dataset_test, regr_dataset_seq_len, nb_aa):
         regr_dataset_test["aa_1hot"], regr_dataset_seq_len, nb_aa
     )
     assert emb_list_1hot.shape == (5, 442, 21)
-
 
 def test_kmers_mean_embeddings(regr_dataset_test, regr_dataset_seq_len, nb_aa):
     """testing kmers_mean_embeddings"""
@@ -53,7 +46,6 @@ def test_kmers_mean_embeddings(regr_dataset_test, regr_dataset_seq_len, nb_aa):
     assert U.shape == (5, 2100)
     assert U_norm.shape == (5, 2100)
 
-
 def test_kmer_embeddings_centers(regr_dataset_test, regr_dataset_seq_len, nb_aa):
     """testing kmers_embeddings_centers"""
     emb_list_1hot = reshape_1hot(
@@ -62,7 +54,6 @@ def test_kmer_embeddings_centers(regr_dataset_test, regr_dataset_seq_len, nb_aa)
     kmer_list, U1 = kmer_embeddings_centers(emb_list_1hot, kmer_size=100)
     assert kmer_list[0].shape == (343, 2100)
     assert U1.shape == (759, 2100)
-
 
 # def test_rkhs_kmer_embeddings(regr_dataset_test, regr_dataset_seq_len, nb_aa):
 #     # reshape 1hot

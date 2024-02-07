@@ -6,9 +6,7 @@ from pedata.pytorch_dataloaders import Transformer
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-
 # ============ fixtures =============
-
 
 @fixture(scope="session")
 def dataset():
@@ -17,7 +15,6 @@ def dataset():
     )
     # return load_dataset("Company/TemStaPro-Minor-bal65", split="testing[:10]")
 
-
 @fixture(scope="session")
 def odd_dataset():
     # return load_dataset("Company/TemStaPro-Minor-bal65", split="testing[:17]")
@@ -25,29 +22,23 @@ def odd_dataset():
         "src/pedata/static/example_data/pytorch_dataloader_odd.parquet"
     )
 
-
 @fixture(scope="session")
 def batch_size():
     return 8
-
 
 @fixture(scope="session")
 def embedding_names_ankh():
     return ["ankh", "aa_1hot"]
 
-
 @fixture(scope="session")
 def embedding_names_esm():
     return ["esm", "aa_1hot"]
-
 
 @fixture
 def transformer():
     return Transformer()
 
-
 # ============ tests =============
-
 
 # def test_transformer(transformer):
 #     """testing transformer
@@ -67,17 +58,14 @@ def transformer():
 #     transformed_sequences = transformer.transform(x)
 #     assert transformed_sequences.shape == (2, 3)
 
-
 # def test_encoder_init():
 #     with pytest.raises(Exception):
 #         Encoder()
-
 
 # def test_dataloader_init(dataset, embedding_names_ankh):
 #     dataloader = Dataloader(dataset=dataset, embedding_names=embedding_names_ankh)
 
 #     assert isinstance(dataloader, torch.utils.data.Dataset)
-
 
 # def test_dataloader_init_odd(odd_dataset, embedding_names_ankh):
 #     dataloader = Dataloader(
@@ -89,7 +77,6 @@ def transformer():
 #     )
 
 #     assert isinstance(dataloader, torch.utils.data.Dataset)
-
 
 # def test_dataloader_training_mode_ankh(dataset, batch_size, embedding_names_ankh):
 #     """testing Dataloader for training mode
@@ -115,7 +102,6 @@ def transformer():
 
 #     assert num_samples == len(dataset)
 
-
 # def test_dataloader_test_mode_ankh(dataset, batch_size, embedding_names_ankh):
 #     """testing Dataloader for testing mode
 
@@ -137,7 +123,6 @@ def transformer():
 #         num_samples += len(X["ankh"])
 
 #     assert num_samples == len(dataset)
-
 
 # def test_dataloader_training_mode_esm(dataset, batch_size, embedding_names_esm):
 #     """testing Dataloader for training mode
@@ -162,7 +147,6 @@ def transformer():
 #         num_samples += len(X["esm"])
 
 #     assert num_samples == len(dataset)
-
 
 # def test_dataloader_test_mode_esm(dataset, batch_size, embedding_names_esm):
 #     """testing Dataloader for testing mode

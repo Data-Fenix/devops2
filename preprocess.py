@@ -33,7 +33,6 @@ parser.add_argument("--no-replace", dest="replace_existing", action="store_false
 parser.set_defaults(replace_existing=False)
 args = parser.parse_args()
 
-
 def get_all_encodings(
     filename: str,
     aa_seqname: str,
@@ -63,7 +62,6 @@ def get_all_encodings(
         if "," in target:
             target = target.split(",")
         reduce_data(filename, aa_seqname, target, dna_seqname=dna_seqname)
-
 
 if __name__ == "__main__":
     if args.similarities:

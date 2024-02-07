@@ -3,7 +3,6 @@ import pedata.mutation.mutation_converter as mc
 from collections import namedtuple
 from pedata.constants import Mut
 
-
 class TestMutationConverter:
     def Test_convert_variant_mutation_to_str(self):
         # Test case 1: Non-list mutations

@@ -2,7 +2,6 @@ import pedata.mutation.mutation_extractor as me
 import pytest
 from pedata.constants import Mut
 
-
 def test_extract_mutation_namedtuples_from_sequences():
     #  Test case 1: Empty variant sequence
     parent_sequence = "ATCGATCG"
@@ -12,7 +11,6 @@ def test_extract_mutation_namedtuples_from_sequences():
             variant_sequences, parent_sequence
         )
 
-
 def test_extract_mutation_namedtuples_from_sequences2():
     #  Test case 2: Empty parent sequence
     parent_sequence = ""
@@ -21,7 +19,6 @@ def test_extract_mutation_namedtuples_from_sequences2():
         me.extract_mutation_namedtuples_from_sequences(
             variant_sequences, parent_sequence
         )
-
 
 def test_extract_mutation_namedtuples_from_sequences3():
     # Test case 3: Single variant sequence
@@ -33,7 +30,6 @@ def test_extract_mutation_namedtuples_from_sequences3():
         [[Mut(pos=4, src="A", targ="T")]],  # List of changed mutations
         [],  # No invalid variant sequence found
     )
-
 
 def test_extract_mutation_namedtuples_from_sequences_parent_in():
     # Test case 4: Multiple variant sequences
@@ -53,7 +49,6 @@ def test_extract_mutation_namedtuples_from_sequences_parent_in():
     )
     assert extracted == expected
 
-
 def test_extract_mutation_namedtuples_from_sequences4():
     # Test case 4: Multiple variant sequences
     parent_sequence = "ATCGATCG"
@@ -69,7 +64,6 @@ def test_extract_mutation_namedtuples_from_sequences4():
         [],  # No invalid variant sequence found
     )
 
-
 def test_extract_mutation_namedtuples_from_sequences5():
     # Test case 5: Unequal length of sequences
     parent_sequence = "ATCGT"
@@ -83,7 +77,6 @@ def test_extract_mutation_namedtuples_from_sequences5():
     )
     assert extracted == expected
 
-
 def test_extract_mutation_namedtuples_from_sequences6():
     # Test case 6: Valid variant sequences with no changed mutations
     parent_sequence = "ATCGATCG"
@@ -94,7 +87,6 @@ def test_extract_mutation_namedtuples_from_sequences6():
         [[], [], []],  # No changed mutations
         [],  # No invalid variant sequence found
     )
-
 
 def test_extract_mutation_namedtuples_from_sequences7():
     # Test case 7: Test on multiple mutations in one variant

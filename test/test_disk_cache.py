@@ -25,7 +25,6 @@ from pedata.disk_cache import (
     save_dataset_as_csv,
 )
 
-
 # ========= Helper functions ======
 def clean_up() -> None:
     """Delete created temporarly files and folders"""
@@ -43,7 +42,6 @@ def clean_up() -> None:
         if os.path.exists(file):
             os.remove(file)
 
-
 # ======== Fixtures ======
 @fixture(scope="module")
 def aa_expected_new_features():
@@ -55,34 +53,27 @@ def aa_expected_new_features():
         "aa_1hot",
     ]
 
-
 @fixture(scope="module")
 def dna_expected_new_features():
     return ["dna_len", "dna_1hot"]
-
 
 @fixture(scope="module")
 def alphabet_type_dna():
     return "dna"
 
-
 @fixture(scope="module")
 def alphabet_type_aa():
     return "aa"
-
 
 @fixture(scope="module")
 def folder_path():
     return "processed_data"
 
-
 @fixture(scope="module")
 def needed_encodings():
     return ["aa_seq", "aa_1hot"]
 
-
 # ======== Tests ======
-
 
 def test_hfds_from_pydict_aa(aa_expected_new_features):
     """hfds_from_pydict test: Create a dataset from a dictionary"""
@@ -93,7 +84,6 @@ def test_hfds_from_pydict_aa(aa_expected_new_features):
     )
     assert all(col in list(hfds.features.keys()) for col in aa_expected_new_features)
 
-
 def test_hfds_from_pydict_dna(dna_expected_new_features):
     """hfds_from_pydict test: Create a dataset from a dictionary"""
     hfds = hfds_from_pydict(
@@ -102,7 +92,6 @@ def test_hfds_from_pydict_dna(dna_expected_new_features):
         as_DatasetDict=False,
     )
     assert all(col in list(hfds.features.keys()) for col in dna_expected_new_features)
-
 
 # def test_save_dataset_as_csv(regr_dataset, regr_dataset_splits, needed_encodings):
 #     """save_dataset_as_csv test: Save a dataset as a csv file
@@ -130,7 +119,6 @@ def test_hfds_from_pydict_dna(dna_expected_new_features):
 #     os.remove("regression_toy_dataset_aa_seq_aa_1hot_train.csv")
 #     os.remove("regression_toy_dataset_aa_seq_aa_1hot_test.csv")
 
-
 def test__read_csv_ignore_case(regr_dataset):
     """test for test__read_csv_ignore_case"""
     # basic use case
@@ -142,7 +130,6 @@ def test__read_csv_ignore_case(regr_dataset):
     # missing file
     with pytest.raises(FileNotFoundError):
         _ = _read_csv_ignore_case("regression_toy_dataset_aa_seq_aa_1hot.csv")
-
 
 def test_read_dataset_from_file():
     """testing read_dataset_from_file function"""
@@ -186,7 +173,6 @@ def test_read_dataset_from_file():
 
     clean_up()
 
-
 def test_get_missing_values():
     """get_missing_values test: Missing values in "aa_seq" column"""
     missing_val = get_missing_values(
@@ -194,14 +180,12 @@ def test_get_missing_values():
     )
     assert sum(missing_val) == 2
 
-
 def test_fill_missing_sequences():
     """fill_missing_sequences test: Missing values in "aa_seq" column"""
     dataset_filled = fill_missing_sequences(
         Dataset.from_dict(aa_example_0_missing_val), "aa_seq"
     )
     assert dataset_filled["aa_seq"] == ["GMPKSEFTHC", "GMPKSEFMHC", "GMGKSEFTHC"]
-
 
 def test_preprocess_data_aa(aa_expected_new_features):
     """preprocess_data  - aa"""
@@ -220,7 +204,6 @@ def test_preprocess_data_aa(aa_expected_new_features):
     assert all(
         feature in list(dataset.features.keys()) for feature in aa_expected_new_features
     )
-
 
 def test_preprocess_data_dna(dna_expected_new_features):
     """preprocess_data dna"""
@@ -246,7 +229,6 @@ def test_preprocess_data_dna(dna_expected_new_features):
         ]
     )
 
-
 def test_preprocess_data_invalid_alphabet():
     """preprocess_data test: Containing invalid AA alphabets"""
     pd.DataFrame(aa_example_0_invalid_alphabet).to_csv("tempfile.csv", index=False)
@@ -254,7 +236,6 @@ def test_preprocess_data_invalid_alphabet():
         _ = preprocess_data("tempfile.csv")
 
     clean_up()
-
 
 def test_preprocess_data_local_filesytem(aa_expected_new_features, folder_path):
     """preprocess_data test: using local file system"""
@@ -267,7 +248,6 @@ def test_preprocess_data_local_filesytem(aa_expected_new_features, folder_path):
     assert all(
         feature in list(dataset.features.keys()) for feature in aa_expected_new_features
     )
-
 
 def test_load_similarity_dna(alphabet_type_dna):
     """Test load_similarity with DNA alphabet"""
@@ -291,7 +271,6 @@ def test_load_similarity_dna(alphabet_type_dna):
         alphabet_type_dna, similarity_name, replace_existing=False
     )
     assert similarity_matrix[0][0] == 1 and similarity_matrix[-1][-1] == 1
-
 
 def test_load_similarity_aa(alphabet_type_aa):
     """Test load_similarity with AA alphabet"""
@@ -321,14 +300,12 @@ def test_load_similarity_aa(alphabet_type_aa):
     )
     assert similarity_matrix[0][4] == -9 and similarity_matrix[-1][1] == -19
 
-
 def test_load_similarity_invalid_alphabet():
     """Test load_similarity: Invalid alphabet type"""
     alphabet_type_bb = "bb"
     similarity_name = "Simple"
     with pytest.raises(ValueError):
         load_similarity(alphabet_type_bb, similarity_name)
-
 
 if False:
     # ======== Tests to implement ======

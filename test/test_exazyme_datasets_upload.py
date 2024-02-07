@@ -5,7 +5,6 @@ import requests
 from huggingface_hub import delete_repo, repo_exists
 from pytest import fixture
 
-
 # check if we are online and can access huggingface
 def huggingface_hub_access():
     try:
@@ -19,7 +18,6 @@ def huggingface_hub_access():
         # Handle exceptions related to connection issues or bad responses
         print(f"Error accessing Hugging Face Hub: {e}")
         return False
-
 
 if huggingface_hub_access():
     # ========== HELPER FUNCTIONS ==========
@@ -35,7 +33,6 @@ if huggingface_hub_access():
 
     def run_command(command):
         subprocess.run(command, shell=True, check=True)
-
     # ========== FIXTURES ==========
     @fixture(scope="module")
     def repo_name():
@@ -56,7 +53,6 @@ if huggingface_hub_access():
     @fixture(scope="module")
     def updated_encodings():
         return ["aa_unirep_1900"]
-
     # ========== TESTS ==========
     # def test_Dataset_upload_and_update(
     #     regr_dataset,

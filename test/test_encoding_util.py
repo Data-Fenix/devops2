@@ -1,13 +1,11 @@
 from pedata.encoding.util import find_function_order
 import pytest
 
-
 class EncodingSpec:
     def __init__(self, provides, requires, func):
         self.provides = provides
         self.requires = requires
         self.func = func
-
 
 class TestEncodingUtil:
     def test_find_function_order(self):

@@ -6,7 +6,6 @@ import os
 import shutil
 from pedata import save_dataset_as_csv
 
-
 def delete_cache_and_repo(cache_dir: str, repo_name: str) -> None:
     """Delete the cache and the repo
     Args:
@@ -17,7 +16,6 @@ def delete_cache_and_repo(cache_dir: str, repo_name: str) -> None:
     if repo_exists(repo_id=repo_name, repo_type="dataset"):
         delete_repo(repo_id=repo_name, repo_type="dataset")
 
-
 def regr_dataset(needed_encodings: list[str]) -> Dataset:
     """Regression dataset - full dataset
     Args:
@@ -26,7 +24,6 @@ def regr_dataset(needed_encodings: list[str]) -> Dataset:
         dataset: train split"""
     ds = RegressionToyDataset(needed_encodings)
     return ds.full_dataset
-
 
 if __name__ == "__main__":
     repo_name = "Company/TestDataset_upload_update_delete"

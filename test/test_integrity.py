@@ -2,7 +2,6 @@ import pedata.integrity as integrity
 import datasets as ds
 import pytest
 
-
 def test_check_dataset():
     # Test case 1: Invalid mutation
     invalid_mut = {"aa_mut": ["MLDSWE"], "aa_seq": [None]}  # Dictionary

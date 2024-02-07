@@ -8,7 +8,6 @@ import pytest
 from pytest import fixture
 from pedata.disk_cache import read_dataset_from_file
 
-
 def test_add_encodings_aa():
     """Add Amino Acid type encodings"""
     # Basics
@@ -36,7 +35,6 @@ def test_add_encodings_aa():
     encoded = add_encodings(dataset_dict, needed)
     for encoded_dataset in encoded.values():
         assert all(column in list(encoded_dataset.features.keys()) for column in needed)
-
 
 def test_add_encodings_dna():
     """Add DNA type encodings"""
@@ -84,11 +82,9 @@ def test_add_encodings_dna():
         ]
     )
 
-
 @fixture(scope="module")  # fixture for regr_dataset
 def needed_encodings():
     return ["aa_len", "aa_1hot"]
-
 
 if False:
 
@@ -99,7 +95,6 @@ if False:
         encoded = add_encodings(dataset.with_format("numpy"), needed)
         assert all(column in list(encoded.features.keys()) for column in needed)
 
-
 def test_add_encodings_atm_type():
     # Test case 4: BACE Dataset
     dataset = read_dataset_from_file(
@@ -108,7 +103,6 @@ def test_add_encodings_atm_type():
     needed = ["atm_count"]
     encoded = add_encodings(dataset.with_format("numpy"), needed)
     assert all(column in list(encoded.features.keys()) for column in needed)
-
 
 def test_add_encodings_smiles():
     """Add Amino Acid type encodings"""
@@ -123,7 +117,6 @@ def test_add_encodings_smiles():
     encoded = add_encodings(dataset, needed)
     assert all(column in list(encoded.features.keys()) for column in needed)
     assert len(dataset["smiles_seq"][0]) == np.array(encoded["smiles_1hot"][0]).sum()
-
 
 def test_add_encodings_raises():
     # Test case 6: Datatype that is neither a dataset nor a dataset dictionary
